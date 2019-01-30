@@ -46,6 +46,8 @@ The IPs include:
     \item {Long-term Recurrent Convolutional Network IP}
 \end{enumerate}
 
+The souce code for our IPs can be found in the github:
+
 \section{IP Repository\label{Sec: Cur_IP}}
 
 \subsection{Standard Convolution IPs \label{Sec:Para_Conv}}
@@ -60,9 +62,7 @@ This IP can be configured with hardware parameters to accommodate different reso
 
 
 \subsubsection{Interface}
-
-\textcolor{red}{Fig.xxx TODO} shows a block diagram of the IP interface, which can be plugged into user's design easily.
-The interface is \textcolor{red}{AXI-bus based (Xingheng: Please confirm)}.
+The input and output data interface of the are memory mapped AXI4 bus protocol. The bus width is 128 bit. The Control interface are AXI-lite GPIO register interface .
 
 
 
@@ -403,8 +403,79 @@ It provides the flexibility that the user can alter this IP according to the obj
 
 
 \subsection{Long-term Recurrent Convolution Network IP}
+\subsubsection{Introduction}
+Apart from General purpose DNN component IPs, we also developed a image content recognition IP based on Long-term Recurrent Convolution Network. The IP takes image as input and generates descriptive sentence as output. The  overall network flow is shown in figure \ref{fig:LRCN}. The input image is first processed by the CNN module for feature extraction. The extracted feature vector is then fed into the RNN module for recurrent word generation. The LRCN computation flow is implemented and packed into a single IP with the structure shown in figure \ref{fig:LRCN_bd}. The IP have two memory AXI interface for input/output put data transportation and one block control interface for operation control. The input interface module is responsible for reading in input data (including image data and neral network parameters) and stream the data into CNN component and LSTM component in requested order. The output interface module is responsible for writing data out back to the off chip memory.
 
-Apart from General purpose DNN component IPs, we also developed a specific image content recoginition IP based on Long-term Recurrent Convolution Network IP. 
+\subsubsection{Interface}
+The input and output interface between IP and DDR are memory mapped AXI4 bus protocol. The bus width is 512 bit. The Control interface are AXI-lite GPIO register interface .
+
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.7\textwidth]{LRCN.png}\\
+  \vspace{-12pt}
+  \caption{LRCN Network Flow}\label{fig:LRCN}
+  \vspace{-12pt}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.7\textwidth]{lrcn_block_diagram.png}\\
+  \vspace{-12pt}
+  \caption{LRCN IP Structure}\label{fig:LRCN_bd}
+  \vspace{-12pt}
+\end{figure}
+
+\begin{itemize}
+    \item {
+\textbf{Input and Output:} The IP accepts image and rearranged weight data as input and generates word index sequence as the output.
+    }
+    \item {
+\textbf{Configurable Components:} 
+The CNN component and RNN component is composed by configurable convolution and fully connected IPs. The users may alter the those IP for different CNN or LSTM structure.
+
+\begin{enumerate}
+    \item {
+    Convolution Module, The convolution IP is designed to receive weight data in stream interface to achieve best performance. Configurable parameters include: input dimensions $IH \times IH\times ID$, output dimensions $OH \times OH\times OD$, kernel dimensions $FW \times FH $, data precision (8 bit, 12bit or 16 bit) and input/output parallel factor (8 or 16).
+    }
+    \item {
+    Fully Connected Module, The convolution IP is designed to receive weight data in stream interface to achieve best performance. Configurable parameters include: input vector length $ID$, output vector length $OD$, data precision (8 bit, 12bit or 16 bit) and input/output parallel factor (8 or 16).
+    }
+\end{enumerate}
+    }
+    
+\end{itemize}
+
+\subsubsection{Resource and Performance:} 
+We collect the resoruce and performance data of the image content recognition IP with AlexNet as CNN component and LSTM as the RNN component. We used Personal IP as the host machine and PCIe as the host-chip data transmission interface. The statistic is shown in Table \ref{tab:resourec_lrcn} and Table \ref{tab:perf_lrcn}
+
+\begin{table}[h]
+\centering
+\caption{Resource Consumption of LRCN\vspace{-10pt}} \label{tab:resourec_lrcn}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|c | c |  c| c|}
+\hline 
+BRAM & DSP & Flip-Flop & LUT \\
+\hline
+1508 & 3130 & 321195 & 316250 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Performance Result of LRCN\vspace{-10pt}} \label{tab:perf_lrcn}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|c | c |  c| c|}
+\hline 
+Frequency & latency & Power & Efficiency \\
+\hline
+100Mhz & 0.04s & 23.6W & 0.94j/pic \\
+\hline
+\end{tabular}
+\end{table}
+    
 
 
 
