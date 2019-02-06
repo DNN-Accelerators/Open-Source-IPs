@@ -16,7 +16,7 @@ int main(){
     // Read data from binary file
 	char* dest  = new char[sizeof(reorder_data)];
 	std::ifstream ifs;
-	ifs.open("reorderdata_for_maxDSP_small_diffQ.bin", std::ios::binary | std::ios::in);
+	ifs.open("inputs_weights.bin", std::ios::binary | std::ios::in);
 	ifs.read((char*) reorder_data, sizeof(ap_int<512>)*301050);
 	ifs.close();
 
