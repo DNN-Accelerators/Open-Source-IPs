@@ -6,11 +6,11 @@
 #include <math.h>
 #include <ap_fixed.h>
 #include "hls_stream.h"
-#include "net_hls.h"
+#include "dcl.h"
 
 
-void load_weights(FIX_WT weight_buf[16],
-				  FIX_WT weights[16][3][3],
+void load_weights(FIX_WT weight_buf[DEPTH],
+				  FIX_WT weights[DEPTH][3][3],
 				  int i, int j)
 {
 #pragma HLS ARRAY_PARTITION variable=weights dim=1 factor=16
@@ -18,17 +18,16 @@ void load_weights(FIX_WT weight_buf[16],
 	for(int coo = 0; coo < 16; coo++){
 #pragma HLS unroll
 		weight_buf[coo] = weights[coo][i][j];
-		//printf("weight_buf[%d] = weights[%d][%d][%d] (%f)\n", coo, coo, i, j, weights[coo][i][j] );
 	}
 }
 
 
-void CONV_3x3_group(FIX_FM bottom[16][22][42],
-					FIX_FM top[16][22][42],
-					FIX_WT weights[16][3][3])
+void CONV_3x3_group(FIX_FM bottom[DEPTH][HEIGH][WIDTH],
+					FIX_FM top[DEPTH][HEIGH][WIDTH],
+					FIX_WT weights[DEPTH][3][3])
 {
 
-	FIX_WT weight_buf[16];
+	FIX_WT weight_buf[DEPTH];
 
 #pragma HLS ARRAY_PARTITION variable=bottom cyclic dim=1 factor=16
 #pragma HLS ARRAY_PARTITION variable=top cyclic dim=1 factor=16
@@ -42,18 +41,16 @@ void CONV_3x3_group(FIX_FM bottom[16][22][42],
 
 			load_weights(weight_buf, weights, i, j);
 
-			for(int h = 1; h <= 20; h++){
-				for(int w = 1; w <= 40; w++){
+			for(int h = 1; h <= HEIGH-2; h++){
+				for(int w = 1; w <= WIDTH-2; w++){
 #pragma HLS pipeline
 					for(int co = 0; co < 16; co++){
 #pragma HLS unroll
-						//top_tmp[co][h][w] += weight_buf[co] * bottom[co][h+i-1][w+j-1];
 						top[co][h][w] += weight_buf[co] * bottom[co][h+i-1][w+j-1];
 					}
 				}
 			}
 		}
 	}
-
 }
 

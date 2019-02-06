@@ -12,6 +12,9 @@
 typedef ap_uint<8> uint8;
 //typedef ap_uint<16> uint16;
 
+#define DEPTH 16
+#define WIDTH 42
+#define HEIGH 22
 
 #ifdef CSIM_DEBUG
 	typedef float FIX_32_4;	//fix point
@@ -34,36 +37,6 @@ typedef ap_uint<8> uint8;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void mobilenet(uint8 image_in_raw_pad[3][162][322],
-
-				FIX_16_1 fix_conv_weight_1x1_all[405][16][16],
-				FIX_16_1 fix_conv_weight_3x3_all[22][16][3][3],
-				FIX_16_1 fix_bias_all[67][16],
-
-				FIX_FM DDR_pool_3_out_PL[48][82][162],
-				FIX_FM DDR_pool_6_out_PL[96][42][82],
-
-				//FIX_FM DDR_pool_out_PL[96][82][162],
-
-				FIX_FM DDR_buf[36][16][22][42],
-
-				float predict_box[5]
-
-);
 
 void CONV_3x3_group(FIX_FM bottom[16][22][42],
 					FIX_FM top[16][22][42],

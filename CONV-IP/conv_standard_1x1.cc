@@ -6,7 +6,7 @@
 #include <math.h>
 #include <ap_fixed.h>
 #include "hls_stream.h"
-#include "net_hls.h"
+#include "dcl.h"
 
 
 FIX_32_12 compute_engine_16(FIX_WT w0,  FIX_FM b0,
@@ -73,49 +73,12 @@ FIX_32_12 compute_engine_16(FIX_WT w0,  FIX_FM b0,
 }
 
 
-
-FIX_FM compute_engine_8(FIX_WT w0,  FIX_FM b0,
-					  FIX_WT w1,  FIX_FM b1,
-					  FIX_WT w2,  FIX_FM b2,
-					  FIX_WT w3,  FIX_FM b3,
-					  FIX_WT w4,  FIX_FM b4,
-					  FIX_WT w5,  FIX_FM b5,
-					  FIX_WT w6,  FIX_FM b6,
-					  FIX_WT w7,  FIX_FM b7)
+void CONV_1x1(FIX_FM bottom[DEPTH][HEIGH][WIDTH],
+			  FIX_FM top[DEPTH][HEIGH][WIDTH],
+			  FIX_WT weights[DEPTH][DEPTH])
 {
-	FIX_32_16 mul0, mul1, mul2,  mul3,  mul4,  mul5,  mul6,  mul7;
-	FIX_32_16 add0, add1, add2, add3,  add4,  add5,  add6;
-
-	mul0  = w0  * b0;
-	mul1  = w1  * b1;
-	mul2  = w2  * b2;
-	mul3  = w3  * b3;
-	mul4  = w4  * b4;
-	mul5  = w5  * b5;
-	mul6  = w6  * b6;
-	mul7  = w7  * b7;
-
-	add0 = mul0  + mul1;
-	add1 = mul2  + mul3;
-	add2 = mul4  + mul5;
-	add3 = mul6  + mul7;
-
-	add4 = add0  + add1;
-	add5 = add2 + add3;
-
-	add6 = add4 + add5;
-
-	return (FIX_FM)add6;
-
-}
-
-
-void CONV_1x1(FIX_FM bottom[16][22][42],
-			  FIX_FM top[16][22][42],
-			  FIX_WT weights[16][16])
-{
-FIX_WT weight_buf[16][16];
-FIX_32_12 tmp[16];
+FIX_WT weight_buf[DEPTH][DEPTH];
+FIX_32_12 tmp[DEPTH];
 
 #pragma HLS ARRAY_PARTITION variable=bottom cyclic dim=1 factor=16
 #pragma HLS ARRAY_PARTITION variable=top cyclic dim=1 factor=16
@@ -125,13 +88,13 @@ FIX_32_12 tmp[16];
 
 #pragma HLS ALLOCATION instances=compute_engine_16 limit=8 function
 
-	for(int i = 0; i < 16; i++)
-		for(int j = 0; j < 16; j++)
+	for(int i = 0; i < DEPTH; i++)
+		for(int j = 0; j < DEPTH; j++)
 			weight_buf[i][j] = weights[i][j];
 
 
-	for(int h = 1; h <= 20; h++){
-		for(int w = 1; w <= 40; w++) {
+	for(int h = 1; h <= HEIGH-2; h++){
+		for(int w = 1; w <= WIDTH-2; w++) {
 
 //			for(int co = 0; co < 16; co+=8) {
 #pragma HLS pipeline
