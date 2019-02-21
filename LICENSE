@@ -1,29 +1,23 @@
-BSD 3-Clause License
-
-Copyright (c) 2018-2019, Open-Source-IPs
+Copyright (c) <2019> 
+<University of Illinois at Urbana-Champaign>
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+Developed by:   
 
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
+<ES CAD Group>
+<University of Illinois at Urbana-Champaign>
+<http://dchen.ece.illinois.edu/>
 
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this IP suite and associated documentation file (the "IP Package"), to deal with the IP Package without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the IP Package, and to permit persons to whom the IP Package is furnished to do so, subject to the following conditions:
 
-* Neither the name of the copyright holder nor the names of its
-  contributors may be used to endorse or promote products derived from
-  this software without specific prior written permission.
+    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimers.
+    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimers in the documentation and/or other materials provided with the distribution.
+    * Neither the names of the Development Groups and the names of the Institutions, nor the names of its contributors may be used to endorse or promote products derived from this IP Package without specific prior written permission. 
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+THE IP PACKAGE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE IP PACKAGE OR THE USE OR OTHER DEALINGS WITH THE IP PACKAGE. 
+
+When referencing this application in a publication, please cite whichever paper(s) as appropriate:
+
+[1] Zhang, X., Liu, X., Ramachandran, A., Zhuge, C., Tang, S., Ouyang, P., Cheng, Z., Rupnow, K. and Chen, D., 2017, September. High-performance video content recognition with long-term recurrent convolutional network for FPGA. In 2017 27th International Conference on Field Programmable Logic and Applications (FPL) (pp. 1-4). IEEE.
+
+[2] Hao, C., Zhang, X., Li Y., Huang S., Xiong J., Rupnow K., Hwu W., Chen D., 2019, June. FPGA/DNN Co-Design: An Efficient Design Methodology for IoT Intelligence on the Edge. ACM/IEEE Design Automation Conference (DAC), Las Vegas, NV, June 2–6, 2019.
