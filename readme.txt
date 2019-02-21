@@ -19,3 +19,10 @@ https://github.com/DNN-Accelerators/Open-Source-IPs
 This project is sponsored by Semiconductor Research Corporation (SRC) through a collaborative research project between University of Illinois Urbana-Champaign and Cornell University. The IP developed by Cornell university can be found in the GitHub:
 
 https://github.com/cornell-zhang/rosetta
+
+
+When referencing this application in a publication, please cite whichever paper(s) as appropriate:
+
+[1] Zhang, X., Liu, X., Ramachandran, A., Zhuge, C., Tang, S., Ouyang, P., Cheng, Z., Rupnow, K. and Chen, D., 2017, September. High-performance video content recognition with long-term recurrent convolutional network for FPGA. In 2017 27th International Conference on Field Programmable Logic and Applications (FPL) (pp. 1-4). IEEE.
+
+[2] Hao, C., Zhang, X., Li Y., Huang S., Xiong J., Rupnow K., Hwu W., Chen D., 2019, June. FPGA/DNN Co-Design: An Efficient Design Methodology for IoT Intelligence on the Edge. ACM/IEEE Design Automation Conference (DAC), Las Vegas, NV, June 2–6, 2019.
