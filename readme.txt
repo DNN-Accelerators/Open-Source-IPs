@@ -13,12 +13,12 @@ This IP Package includes an open-source IP repository specifically designed for 
 The IPs include:
 
 Standard convolution IPs
-Depth-wise seperatable convolution IPs
+Depth-wise separable convolution IPs
 Pooling IPs
 Bounding box regression IP
 Long-term Recurrent Convolutional Network IP
 
-Each IP is provided with: introduction, interface description, inputs and outputs description, parameter configuration, and resource and performance. The IPs are developed in C/C++. The source code is synthesizable through Xilinx Vivado  High Level Synthesis (Vivado HLS), and Register Transfer Level (RTL) code can be generated conveniently using Vivado HLS.
+Each IP is provided with: introduction, interface description, inputs and outputs description, parameter configuration, and resource and performance. The IPs are developed in C/C++. The source code is synthesizable through Xilinx Vivado High Level Synthesis (Vivado HLS), and Register Transfer Level (RTL) code can be generated conveniently using Vivado HLS.
 
 This project is sponsored by Semiconductor Research Corporation (SRC) through a collaborative research project between University of Illinois at Urbana-Champaign and Cornell University. The IPs developed by Cornell university can be found in the following GitHub:
 
@@ -26,7 +26,6 @@ https://github.com/cornell-zhang/rosetta
 
 
 When referencing this particular IP Package in a publication, please use the following citation:
-
 Xinheng Liu, Cong Hao, and Deming Chen, HLS based Open-Source IPs for Deep Neural Network Acceleration, 
 University of Illinois at Urbana-Champaign: https://github.com/DNN-Accelerators/Open-Source-IPs
 
